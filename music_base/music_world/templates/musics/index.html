@@ -7,19 +7,21 @@
     <div class="row">
         {% for event in events %}
         <div class="col-md-4">
-        <div class="card">
-            <img src="{{event.cover.url}}" class="card-img-top" />
-            <div class="card-body">
-                <h3>{{event.title}}</h3>
-                <h4>{{event.events_date_time}}</h4>
+            <div class="card">
+                <a href="{% url 'musics_show' event.id%}">
+                    <img src="{{event.cover.url}}" class="card-img-top" />
+                </a>
+                <div class="card-body">
+                    <h3>{{event.title}}</h3>
+                    <h4>{{event.events_date_time}}</h4>  
+                </div>
             </div>
-        </div>
         
-        {% empty %}
+            {% empty %}
 
-        <div class="alert alert-warning">
-            No Events added yet
-        </div>
+            <div class="alert alert-warning">
+                No Events added yet
+            </div>
 
         
         </div>

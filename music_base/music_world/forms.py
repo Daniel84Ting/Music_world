@@ -16,7 +16,8 @@ class EventForm(forms.ModelForm):
             }),
             'events_date_time' : forms.DateTimeInput(attrs={
                 'class': 'form-control datetimepicker-input',
-                'data-target': '#datetimepicker1'
+                'data-target': '#datetimepicker1',
+                'placeholder': 'yy-mm-dd  00:00'
             }),
             'location' : forms.TextInput(attrs={
                 'class': 'form-control', 

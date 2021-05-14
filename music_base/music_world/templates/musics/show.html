@@ -1,0 +1,33 @@
+{% extends 'musics/base.html' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="{{event.cover.url}}" class="card-img-top" />
+                    <h3>{{event.title}}</h3>
+                    <h4>Schedule: {{event.events_date_time}}</h4>
+                    <h4>Avenue: {{event.location}}</h4>
+                    <h5>Description:</h5>
+                    <h5>{{event.description}}</h5>
+                    <a href="{% url "musics_show" event.id %}? action=edit">Edit</a>
+                    <a href="{% url "musics_show" event.id %}? action=del">X</a>
+                </div> 
+            </div>
+            {% if edit %} 
+            <div class="col-md-6">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit">Add Events</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock body %}

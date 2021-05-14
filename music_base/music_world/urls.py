@@ -3,5 +3,6 @@ from .views import *
 
 urlpatterns = [
     path("", views_index, name="musics_index"),
-    path("profile/", views_profile, name="musics_profile"),
+    path("events/", views_event, name="musics_event"),
+    path("show/<uuid:pk>", views_show, name="musics_show")
 ]
