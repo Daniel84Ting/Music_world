@@ -9,10 +9,10 @@
         <div class="col-md-4">
             {% for event in events %}
             <div class="card">
-                <a href="{% url 'musics_show' event.id%}">
-                    <img src="{{event.cover.url}}" class="card-img-top" />
-                </a>
                 <div class="card-body">
+                    <a href="{% url 'events:musics_show' event.id%}">
+                    <img src="{{event.cover.url}}" class="card-img-top" />
+                    </a>
                     <h3>{{event.title}}</h3>
                     <h4>{{event.events_date_time}}</h4>  
                 </div>

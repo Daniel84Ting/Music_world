@@ -12,19 +12,32 @@
                     <h4>Avenue: {{event.location}}</h4>
                     <h5>Description:</h5>
                     <p>{{event.description}}</p>
-                    <a class="btn btn-primary" role="button" href="{% url "musics_show" event.id %}?action=edit">Edit</a>
-                    <a class="btn btn-primary" role="button" href="{% url "musics_show" event.id %}?action=del">Delete</a>
+                    <div class="d-grid gap-2 ">
+                        <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.id %}?action=edit">Edit</a>
+                        <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.id %}?action=del">Delete</a>
+                    </div>
                 </div> 
             </div>
             {% if edit %} 
             <div class="col-md-6">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{% url 'events:musics_show' event.id %}?action=edit" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form}}
-                    <button type="submit">Add Events</button>
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-outline-primary" type="submit">Edit Events</button>
+                        <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.id %}">Cancel</a>
+                    </div> 
                 </form>
             </div>
             {% endif %}
+            <div class="form-floating">
+                <h2>Reviews</h2>
+                <form action="{% url 'reviews:review_create' event.id %}" method="post">
+                    {% csrf_token %}
+                    {{review_form}}
+                    <button class="btn btn-outline-primary" type="submit">Send</button>
+                </form>
+            </div>
         </div>
     </div>
 
