@@ -11,9 +11,9 @@
                     <h4>Schedule: {{event.events_date_time}}</h4>
                     <h4>Avenue: {{event.location}}</h4>
                     <h5>Description:</h5>
-                    <h5>{{event.description}}</h5>
-                    <a href="{% url "musics_show" event.id %}? action=edit">Edit</a>
-                    <a href="{% url "musics_show" event.id %}? action=del">X</a>
+                    <p>{{event.description}}</p>
+                    <a class="btn btn-primary" role="button" href="{% url "musics_show" event.id %}?action=edit">Edit</a>
+                    <a class="btn btn-primary" role="button" href="{% url "musics_show" event.id %}?action=del">Delete</a>
                 </div> 
             </div>
             {% if edit %} 
