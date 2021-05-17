@@ -5,6 +5,15 @@ import uuid
 
 # Create your models here.
 
+class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    name = models.CharField(max_length=200, null=False)
+    
+    def __str__(self):
+        return self.name
+
+
 class Event(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
@@ -14,6 +23,7 @@ class Event(models.Model):
     description = models.TextField()
 
     cover = models.ImageField(upload_to='uploads/%Y/%m/%d')
+    categories = models.ManyToManyField(Category, related_name='events')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

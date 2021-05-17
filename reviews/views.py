@@ -3,6 +3,7 @@ from reviews.models import Review
 from reviews.forms import ReviewForm
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
+import uuid
 
 # Create your views here.
 
@@ -16,6 +17,6 @@ def views_create(request, event):
             event = Event.objects.get(pk=event)
             event.reviews.create(name=request.POST['name'],review=request.POST['review'])
 
-            return redirect('events:musics_show', event.id)
+            return redirect('events:musics_show', event)
 
     return HttpResponse({"message":"it works"})

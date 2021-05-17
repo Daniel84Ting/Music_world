@@ -1,6 +1,6 @@
 from django import forms 
-from django.forms import widgets
-from music_world.models import Event
+# from django.forms import widgets
+from .models import *
 
 
 class EventForm(forms.ModelForm):
@@ -31,3 +31,9 @@ class EventForm(forms.ModelForm):
                 'class': 'form-control'
             })
         }
+
+class CategoryForm(forms.ModelForm):
+    
+    class Meta:
+        model = Category
+        fields = '__all__'

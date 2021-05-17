@@ -1,7 +1,8 @@
 from reviews.forms import ReviewForm
-from music_world.forms import EventForm
+from music_world.forms import EventForm, CategoryForm
 from music_world.models import Event
 from django.shortcuts import redirect, render
+import uuid
 
 # Create your views here.
 
@@ -20,7 +21,8 @@ def views_event(request):
     
     events = Event.objects.all()
 
-    return render(request, 'musics/events.html', {"form":form, "events":events})
+    context = {"form":form, "events":events}
+    return render(request, 'musics/events.html', context)
 
 def views_show(request, pk):
     try:
@@ -41,11 +43,25 @@ def views_show(request, pk):
         
     if request.GET.get('action') == 'edit':
         form = EventForm(instance=event)
-        return render(request, 'musics/show.html', {"form":form, "event":event, "edit":True})
+
+        context = {"form":form, "event":event, "edit":True}
+        return render(request, 'musics/show.html', context)
 
     
 
     review_form = ReviewForm()
-    context = {"event":event, "edit":False, "review_form":review_form}
 
+    context = {"event":event, "edit":False, "review_form":review_form}
     return render(request, 'musics/show.html', context)
+
+def views_create_category(request):
+
+    category_form = CategoryForm()
+    if request.method == 'POST':
+        category_form = CategoryForm(request.POST)
+        if category_form.is_valid():
+            category_form.save()
+            return redirect('events:musics_index')
+
+    context = {"category_form":category_form}
+    return render(request, 'musics/create_category.html', context)

@@ -1,0 +1,12 @@
+{% extends 'musics/base.html' %}
+
+{% block body %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{category_form}}
+
+    <button class="btn btn-outline-primary" type="submit">Add Category</button>
+
+</form>
+{% endblock body %}

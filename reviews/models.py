@@ -11,3 +11,5 @@ class Review(models.Model):
     review = models.TextField(null=False)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='reviews')
 
+    def __str__(self):
+        return self.name
