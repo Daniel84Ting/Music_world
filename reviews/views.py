@@ -17,6 +17,10 @@ def views_create(request, event):
             event = Event.objects.get(pk=event)
             event.reviews.create(name=request.POST['name'],review=request.POST['review'])
 
-            return redirect('events:musics_show', event)
+            return redirect('events:musics_show', event.id)
+    
+    # if request.GET.get('action') == 'del':
+    #     event.delete()
+    #     return redirect('events:musics_show')
 
     return HttpResponse({"message":"it works"})

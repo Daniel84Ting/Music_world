@@ -10,6 +10,10 @@
                     <h3>{{event.title}}</h3>
                     <h4>Schedule: {{event.events_date_time}}</h4>
                     <h4>Avenue: {{event.location}}</h4>
+                    <h4>Instruments:</h4>
+                    {% for cat in event.categories.all %}
+                    <li>{{cat.name}}</li>
+                    {% endfor %}
                     <h5>Description:</h5>
                     <p>{{event.description}}</p>
                     <div class="d-grid gap-2 ">
@@ -30,13 +34,27 @@
                 </form>
             </div>
             {% endif %}
-            <div class="form-floating">
-                <h2>Reviews</h2>
-                <form action="{% url 'reviews:review_create' event.id %}" method="post">
-                    {% csrf_token %}
-                    {{review_form}}
-                    <button class="btn btn-outline-primary" type="submit">Send</button>
-                </form>
+            <div class="col">
+                <div class="card-body">
+                    <h4>Comments</h4>
+                        <div class="col-md-3">
+                            {% for r in event.reviews.all %}
+                            <div class="col-md-3">
+                            <h6>   {{r.name}}   </h6>
+                            </div>
+                            <p>{{r.review}}</p>
+                            {% comment %} <a class="btn btn-outline-primary" role="button" href="{% url "reviews:review_create" event.id %}?action=del">X</a> {% endcomment %}
+                            {% endfor %}
+                        </div>
+                        <div class="form-floating">
+                            <h4>Reviews</h4>
+                            <form action="{% url 'reviews:review_create' event.id %}" method="post">
+                                {% csrf_token %}
+                                {{review_form}}
+                                <button class="btn btn-outline-primary" type="submit">Send</button>
+                            </form>
+                        </div>
+                </div>
             </div>
         </div>
     </div>

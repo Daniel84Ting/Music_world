@@ -1,9 +1,15 @@
 from django import forms 
-# from django.forms import widgets
 from .models import *
+# from django.forms import widgets
+
 
 
 class EventForm(forms.ModelForm):
+
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple()
+    )
     
     class Meta:
         model = Event
