@@ -1,4 +1,4 @@
-{% extends 'musics/base.html' %}
+{% extends 'base.html' %}
 
 {% block body %}
 <h1>Music Events</h1>
@@ -31,3 +31,66 @@
 </div>
 
 {% endblock body %}
+
+{% block scripts %}
+
+<script>
+
+    getReviews()
+
+    document.querySelector("#add_review").addEventListener("submit", function (e){
+        e.preventDefault()
+        const formData = new FormData(e.target);
+        fetch("/reviews/{{marketplace.id}}", {
+                method: "post",
+                body: JSON.stringify({
+                "review": formData.get('review')
+                })
+            })
+            .then(res => res.json())
+            .then(result => {
+                document.querySelector("#add_review").reset()
+                getReviews()
+            })
+    })
+
+    function getReviews() {
+        fetch("/reviews/{{event.id}}")
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+
+                const reviews_holder = document.querySelector("#reviews")
+                reviews_holder.innerHTML = ""
+                let containerDiv, descDiv
+
+                result.forEach(ele => {
+                        containerDiv = document.createElement("div")
+                        containerDiv.classList.add("d-flex", "align-items-center", "mb-3")
+                        descDiv = document.createElement("div")
+                        descDiv.classList.add("flex-grow-1", "ms-3")
+                        let titleH1 = document.createElement("h2")
+                        let imgDiv = document.createElement("div")
+                        imgDiv.classList.add("flex-shrink-0")
+                        let img = document.createElement("img")
+                        img.src = "https://external-preview.redd.it/On7eiZzewvGWilxLRZX77N-SZKNt4jS4VMJX7ZSh88A.jpg?auto=webp&s=a3df8bb3c50479e3e74e6adf59da0d9964d39b76"
+
+                        imgDiv.appendChild(img)
+
+                        containerDiv.appendChild(imgDiv)
+
+
+                        titleH1.appendChild(document.createTextNode(ele.user.username + "-" + ele.user.city))
+                        descDiv.appendChild(titleH1)
+                        descDiv.appendChild(document.createTextNode(ele.review))
+                        containerDiv.appendChild(descDiv)
+                        //replace with new data
+                        reviews_holder.appendChild(containerDiv)
+                })
+            })
+
+    }
+</script>
+
+
+{% endblock scripts %}

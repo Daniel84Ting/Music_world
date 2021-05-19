@@ -1,4 +1,4 @@
-{% extends 'musics/base.html' %}
+{% extends 'base.html' %}
 
 {% block body %}
 
@@ -38,13 +38,15 @@
                 <div class="card-body">
                     <h4>Comments</h4>
                         <div class="col-md-3">
-                            {% for r in event.reviews.all %}
-                            <div class="col-md-3">
-                            <h6>   {{r.name}}   </h6>
+                            <div class="overflow-auto">
+                                {% for r in event.reviews.all %}
+                                <div class="col-md-3">
+                                    <h6>{{r.name}}</h6>
+                                </div>
+                                    <p>{{r.review}}</p>
+                                    {% comment %} <a class="btn btn-outline-primary" role="button" href="{% url "reviews:review_create" event.id %}?action=del">X</a> {% endcomment %}
+                                {% endfor %}
                             </div>
-                            <p>{{r.review}}</p>
-                            {% comment %} <a class="btn btn-outline-primary" role="button" href="{% url "reviews:review_create" event.id %}?action=del">X</a> {% endcomment %}
-                            {% endfor %}
                         </div>
                         <div class="form-floating">
                             <h4>Reviews</h4>

@@ -2,21 +2,34 @@ from reviews.forms import ReviewForm
 from music_world.forms import EventForm, CategoryForm
 from music_world.models import Event
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 import uuid
 
 # Create your views here.
-
+@login_required
 def views_index(request):
 
     events = Event.objects.all()
     return render(request, 'musics/index.html',{"events":events})
 
+@login_required
 def views_event(request):
     form = EventForm()
     if request.method == "POST":
         form = EventForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            event = Event(
+                title=request.POST['title'],
+                events_date_time=request.POST['events_date_time'],
+                location=request.POST['location'],
+                description=request.POST['description'],
+                cover=request.FILES['cover']
+                )
+
+            event.save()
+            categories = form.cleaned_data['categories']
+            for cat in categories:
+                event.categories.add(cat)
             return redirect('events:musics_index')
     
     events = Event.objects.all()
@@ -24,6 +37,7 @@ def views_event(request):
     context = {"form":form, "events":events}
     return render(request, 'musics/events.html', context)
 
+@login_required
 def views_show(request, pk):
     try:
         event = Event.objects.get(pk=pk)
@@ -54,6 +68,7 @@ def views_show(request, pk):
     context = {"event":event, "edit":False, "review_form":review_form}
     return render(request, 'musics/show.html', context)
 
+@login_required
 def views_create_category(request):
 
     category_form = CategoryForm()
