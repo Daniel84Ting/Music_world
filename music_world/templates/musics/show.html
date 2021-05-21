@@ -16,10 +16,12 @@
                     {% endfor %}
                     <h5>Description:</h5>
                     <p>{{event.description}}</p>
+                    {% if request.user.profile %}
                     <div class="d-grid gap-2 ">
                         <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.id %}?action=edit">Edit</a>
                         <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.id %}?action=del">Delete</a>
                     </div>
+                    {% endif %}
                 </div> 
             </div>
             {% if edit %} 

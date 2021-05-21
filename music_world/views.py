@@ -16,7 +16,7 @@ def views_index(request):
 def views_event(request):
     form = EventForm()
     if request.method == "POST":
-        form = EventForm(request.POST, request.FILES)
+        form = EventForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             event = Event(
                 title=request.POST['title'],
@@ -80,3 +80,4 @@ def views_create_category(request):
 
     context = {"category_form":category_form}
     return render(request, 'musics/create_category.html', context)
+

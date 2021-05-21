@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
+{% if request.user.is_superuser %}
 <form action="" method="POST">
     {% csrf_token %}
     {{category_form}}
@@ -9,4 +9,5 @@
     <button class="btn btn-outline-primary" type="submit">Add Category</button>
 
 </form>
+{% endif %}
 {% endblock body %}

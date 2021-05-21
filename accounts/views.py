@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from .forms import ProfileForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -63,3 +66,22 @@ def views_logout(request):
 
     logout(request)
     return redirect('accounts:login')
+
+@login_required
+def views_profile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('accounts:profile')
+
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+
+    context = {'profile_form': profile_form}
+
+    return render(request, 'accounts/profile.html', context)
