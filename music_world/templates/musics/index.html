@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>Music Events</h1>
+
+
 
 <div class="container">
+    <h1>Music Events</h1>
     <div class="row">
-        
         <div class="col-md-4">
             {% for event in events %}
             <div class="card">
@@ -32,6 +33,7 @@
 
 {% endblock body %}
 
+
 {% block scripts %}
 
 <script>
@@ -41,7 +43,7 @@
     document.querySelector("#add_review").addEventListener("submit", function (e){
         e.preventDefault()
         const formData = new FormData(e.target);
-        fetch("/reviews/{{marketplace.id}}", {
+        fetch("/reviews/{{event.id}}", {
                 method: "post",
                 body: JSON.stringify({
                 "review": formData.get('review')
@@ -91,6 +93,5 @@
 
     }
 </script>
-
 
 {% endblock scripts %}

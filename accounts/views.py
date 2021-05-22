@@ -18,6 +18,7 @@ def views_register(request):
         email = request.POST['email']
         city = request.POST['city']
         country = request.POST['country']
+        
 
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
@@ -81,7 +82,7 @@ def views_profile(request):
 
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-
+    
     context = {'profile_form': profile_form}
 
     return render(request, 'accounts/profile.html', context)

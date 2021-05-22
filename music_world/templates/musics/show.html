@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
+<div class="container">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -37,16 +37,19 @@
             </div>
             {% endif %}
             <div class="col">
-                <div class="card-body">
+                <div class="card">
                     <h4>Comments</h4>
                         <div class="col-md-3">
                             <div class="overflow-auto">
                                 {% for r in event.reviews.all %}
-                                <div class="col-md-3">
+                                <div class="card-body">
                                     <h6>{{r.name}}</h6>
-                                </div>
+                                
                                     <p>{{r.review}}</p>
-                                    {% comment %} <a class="btn btn-outline-primary" role="button" href="{% url "reviews:review_create" event.id %}?action=del">X</a> {% endcomment %}
+                                    {% comment %} <div class="d-grid gap-2 ">
+                                        <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.review.id %}?action=del">Delete</a>
+                                    </div> {% endcomment %}
+                                </div> 
                                 {% endfor %}
                             </div>
                         </div>
@@ -62,7 +65,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 
 {% endblock body %}

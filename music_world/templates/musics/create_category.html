@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<main class="container">
 {% if request.user.is_superuser %}
 <form action="" method="POST">
     {% csrf_token %}
@@ -10,4 +11,5 @@
 
 </form>
 {% endif %}
+</main>
 {% endblock body %}

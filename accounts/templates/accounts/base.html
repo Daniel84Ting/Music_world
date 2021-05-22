@@ -8,61 +8,39 @@
     <title>Document</title>
 </head>
 <body>
-    {% if request.user.profile %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'events:musics_index'%}">Music World</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    {% if user.is_authenticated %}
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark md-3">
+            <div class="container">
+            <a class="navbar-brand mr-4" href="{% url 'events:musics_index'%}">
+            <img src="https://i.pinimg.com/564x/fe/7a/b1/fe7ab143eb031ce5ba71715a8bb70448.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Music World</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'events:musics_event'%}">Events</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'events:musics_event'%}">New Post</a>
+                    <a class="nav-item nav-link" href="{% url 'accounts:profile' %}">Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                </div>
             </div>
-            {% if request.user.is_superuser %}
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'events:category_create' %}">Category</a>
-                    </li>
-                </ul>
             </div>
-            {% endif %}
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile' %}">Profile</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'accounts:logout' %}">Logout</a>
-                    </li>
-                </ul>
-            </div>
+        </nav>
+    </header>
+    {% endif %}
+        {% if messages %}
+        {% for message in message %}
+
+        <div> 
+            {{message}}
         </div>
-    </nav>
-    {% endif %}
 
-    {% if messages %}
-    {% for message in message %}
+        {% endfor %}
 
-    <div> 
-        {{message}}
-    </div>
-
-    {% endfor %}
-
-    {% endif %}
-    
-    {% block content %}
-    {% endblock content %}
+        {% endif %}
+        
+        {% block content %}
+        {% endblock content %}
 </body>
 </html>

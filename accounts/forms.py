@@ -9,6 +9,21 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = '__all__'
 
+        widgets = {
+            'user' : forms.TextInput(attrs={
+                'class': 'form-control', 
+            }),
+            'city' : forms.TextInput(attrs={
+                'class': 'form-control', 
+            }),
+            'country' : forms.TextInput(attrs={
+                'class': 'form-control', 
+            }),
+            'image': forms.FileInput(attrs={
+                'class': 'form-control'
+            })
+        }
+
         
 
 
