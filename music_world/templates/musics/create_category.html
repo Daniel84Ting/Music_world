@@ -11,5 +11,11 @@
 
 </form>
 {% endif %}
+<div class="col-md-6">
+    <h4>Instruments:</h4>
+    {% for cat in categories.all %}
+        <li>{{category}}</li>
+    {% endfor %}
+</div>
 </main>
 {% endblock body %}

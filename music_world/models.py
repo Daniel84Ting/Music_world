@@ -1,4 +1,6 @@
 from django.db import models
+# from accounts.models import User
+from django.utils import timezone
 import uuid
 
 # from django.urls.base import reverse
@@ -17,10 +19,12 @@ class Category(models.Model):
 class Event(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
+    # username = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=False)
     events_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     location = models.CharField(max_length=200, null=False)
     description = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
 
     cover = models.ImageField(upload_to='uploads/%Y/%m/%d')
     categories = models.ManyToManyField(Category, related_name='events')
@@ -33,4 +37,3 @@ class Event(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("musics_show", kwargs={"pk": self.pk})
-

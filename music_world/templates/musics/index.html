@@ -9,13 +9,16 @@
     <div class="row">
         <div class="col-md-4">
             {% for event in events %}
-            <div class="card">
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                {% csrf_token %}
+                {% comment %} <img class="rounded-circle article-img" src="{{ event.user.profile.image.url }}" >  {% endcomment %}
                 <div class="card-body">
+                    <small class="text-muted">Date posted: {{ event.date_posted|date:"F d, Y" }}</small>
                     <a href="{% url 'events:musics_show' event.id%}">
                     <img src="{{event.cover.url}}" class="card-img-top" />
                     </a>
                     <h3>{{event.title}}</h3>
-                    <h4>{{event.events_date_time}}</h4>  
+                    <h4>Date: {{event.events_date_time}}</h4>  
                 </div>
             </div>
         

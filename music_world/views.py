@@ -23,9 +23,10 @@ def views_event(request):
                 events_date_time=request.POST['events_date_time'],
                 location=request.POST['location'],
                 description=request.POST['description'],
+                date_posted=request.POST['date_posted'],
                 cover=request.FILES['cover']
                 )
-
+            
             event.save()
             categories = form.cleaned_data['categories']
             for cat in categories:
@@ -76,8 +77,7 @@ def views_create_category(request):
         category_form = CategoryForm(request.POST)
         if category_form.is_valid():
             category_form.save()
-            return redirect('events:musics_index')
+            return redirect('events:category_create')
 
     context = {"category_form":category_form}
     return render(request, 'musics/create_category.html', context)
-

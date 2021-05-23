@@ -1,6 +1,6 @@
 from django import forms 
 from .models import *
-# from django.forms import widgets
+from django.forms import widgets
 
 
 
@@ -32,6 +32,10 @@ class EventForm(forms.ModelForm):
             'description' : forms.Textarea(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Events Description'
+            }),
+            'date_posted' : forms.DateTimeInput(attrs={
+                'class': 'form-control datetimepicker-input',
+                'data-target': '#datetimepicker1',
             }),
             'cover': forms.FileInput(attrs={
                 'class': 'form-control'
