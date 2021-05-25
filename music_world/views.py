@@ -17,7 +17,7 @@ def views_index(request):
 def views_event(request):
     form = EventForm()
     if request.method == "POST":
-        form = EventForm(request.POST, request.FILES, instance=request.user.profile)
+        form = EventForm(request.POST, request.FILES)
         if form.is_valid():
             event = Event(
                 title=request.POST['title'],
@@ -60,7 +60,6 @@ def views_show(request, pk):
         context = {"form":form, "event":event, "edit":True}
         return render(request, 'musics/show.html', context)
 
-    
 
     review_form = ReviewForm()
 

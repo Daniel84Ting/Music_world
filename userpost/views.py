@@ -1,6 +1,7 @@
 from .forms import CategoryForm, PostForm
 from .models import Post
 from django.shortcuts import redirect, render
+from music_world.views import Event
 from django.contrib.auth.decorators import login_required
 # from django.views.generic import *
 import uuid
@@ -8,18 +9,19 @@ import uuid
 # Create your views here.
 
 @login_required
-def views_index(request):
+def views_post_index(request):
 
-    events = Post.objects.all()
-    return render(request, 'musics/index.html',{"events":events})
+    posts = Post.objects.all()
+    return render(request, 'posts/index.html',{"posts":posts})
 
 @login_required
 def views_post(request):
     form = PostForm()
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES, instance=request.user.profile)
+        form = PostForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             post = Post(
+                username=request.POST['username'],
                 title=request.POST['title'],
                 events_date_time=request.POST['events_date_time'],
                 location=request.POST['location'],
@@ -32,7 +34,7 @@ def views_post(request):
             categories = form.cleaned_data['categories']
             for cat in categories:
                 post.categories.add(cat)
-            return redirect('events:musics_index')
+            return redirect('posts:post-index')
     
     posts = Post.objects.all()
 
@@ -44,11 +46,11 @@ def views_postShow(request, pk):
     try:
         post = Post.objects.get(pk=pk)
     except Post.DoesNotExist:
-        return redirect('events:musics_index')
+        return redirect('posts:post-index')
 
     if request.GET.get('action') == 'del':
         post.delete()
-        return redirect('events:musics_index')
+        return redirect('posts:post-index')
 
     if request.method == 'POST' and request.GET['action'] == 'edit':
         form = PostForm(request.POST, request.FILES, instance=post)
@@ -63,11 +65,8 @@ def views_postShow(request, pk):
         context = {"form":form, "post":post, "edit":True}
         return render(request, 'posts/show.html', context)
 
-    
 
-    review_form = ReviewForm()
-
-    context = {"post":post, "edit":False, "review_form":review_form}
+    context = {"post":post, "edit":False}
     return render(request, 'posts/show.html', context)
 
 @login_required

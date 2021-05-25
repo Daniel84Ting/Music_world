@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            {% for post in posts %}
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+
+                <img class="rounded-circle article-img" src="{{ post.username.profile.image.url }}">
+                <div class="card-footer">
+                    <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
+                </div>
+                <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">Date: {{post.events_date_time}}</p>
+                </div>
+            </div>
+            {% empty %}
+
+            <div class="alert alert-warning">
+                No User Posted Yet
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+

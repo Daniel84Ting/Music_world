@@ -1,7 +1,71 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="{{post.cover.url}}" class="card-img-top" />
+                    <h3>{{post.title}}</h3>
+                    <h4>Schedule: {{post.events_date_time}}</h4>
+                    <h4>Avenue: {{post.location}}</h4>
+                    <h4>Instruments:</h4>
+                    {% for cat in post.categories.all %}
+                    <li>{{cat.name}}</li>
+                    {% endfor %}
+                    <h5>Description:</h5>
+                    <p>{{post.description}}</p>
+                    
+                    <div class="d-grid gap-2 ">
+                        {% if request.user.profile %}
+                        <a class="btn btn-outline-primary" role="button" href="{% url "posts:posts_show" post.id %}?action=edit">Edit</a>
+                        {% endif %}
+                        <a class="btn btn-outline-primary" role="button" href="{% url "posts:posts_show" post.id %}?action=del">Delete</a>
+                    </div>
+                    
+                </div> 
+            </div>
+            {% if edit %} 
+            <div class="col-md-6">
+                <form action="{% url 'posts:posts_show' post.id %}?action=edit" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form}}
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-outline-primary" type="submit">Edit Events</button>
+                        <a class="btn btn-outline-primary" role="button" href="{% url "posts:posts_show" post.id %}">Cancel</a>
+                    </div> 
+                </form>
+            </div>
+            {% endif %}
+            {% comment %} <div class="col">
+                <div class="card">
+                    <h4>Comments</h4>
+                        <div class="col-md-3">
+                            <div class="overflow-auto">
+                                {% for r in post.reviews.all %}
+                                <div class="card-body">
+                                    <h6>{{r.name}}</h6>
+                                
+                                    <p>{{r.review}}</p>
+                                    
+                                </div> 
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <h4>Reviews</h4>
+                            <form action="{% url 'reviews:review_create' event.id %}" method="post">
+                                {% csrf_token %}
+                                {{review_form}}
+                                <button class="btn btn-outline-primary" type="submit">Send</button>
+                            </form>
+                        </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
 
-<h1>post show</h1>
 
 {% endblock body %}

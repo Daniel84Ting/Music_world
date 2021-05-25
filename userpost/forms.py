@@ -14,6 +14,9 @@ class PostForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
+            'username' : forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
             'title' : forms.TextInput(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Events Title'

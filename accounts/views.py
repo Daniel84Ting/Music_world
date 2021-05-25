@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from userpost.views import Post
 
 # Create your views here.
 
@@ -28,7 +29,7 @@ def views_register(request):
             return render(request, "accounts/register.html")
         try:
             pass
-            user = User.objects.create_user(username, email, password,first_name=first_name, last_name=last_name)
+            user = User.objects.create_user(username, email, password, first_name=first_name, last_name=last_name)
             profile = Profile(city=city, country=country, user=user)
             profile.save()
         
@@ -83,6 +84,8 @@ def views_profile(request):
     else:
         profile_form = ProfileForm(instance=request.user.profile)
     
-    context = {'profile_form': profile_form}
+    posts = Post.objects.all()
+
+    context = {'profile_form': profile_form, 'posts':posts}
 
     return render(request, 'accounts/profile.html', context)
