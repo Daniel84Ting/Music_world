@@ -22,13 +22,12 @@
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     {% if request.user.is_superuser %}
                     <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link" href="{% url 'events:category_create' %}">Category</a>
+                    <a class="nav-item nav-link" href="{% url 'posts:category_create' %}">Category</a>
+                    <a class="nav-item nav-link" href="{% url 'events:musics_event'%}">Events</a>
                     </div>
                     {% endif %}
-                    
                     <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'events:musics_event'%}">New Post</a>
                         <a class="nav-item nav-link" href="{% url 'accounts:profile' %}">Profile</a>
                         <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
                     {% else %}

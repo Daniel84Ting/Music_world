@@ -2,12 +2,15 @@ from django import forms
 from .models import *
 from django.forms import widgets
 
+class PostForm(forms.ModelForm):
 
-
-class EventForm(forms.ModelForm):
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple()
+    )
     
     class Meta:
-        model = Event
+        model = Post
         fields = '__all__'
 
         widgets = {
@@ -37,4 +40,8 @@ class EventForm(forms.ModelForm):
             })
         }
 
-
+class CategoryForm(forms.ModelForm):
+    
+    class Meta:
+        model = Category
+        fields = '__all__'

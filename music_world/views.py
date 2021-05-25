@@ -1,5 +1,5 @@
 from reviews.forms import ReviewForm
-from music_world.forms import EventForm, CategoryForm
+from music_world.forms import EventForm
 from music_world.models import Event
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,7 @@ def views_index(request):
 
     events = Event.objects.all()
     return render(request, 'musics/index.html',{"events":events})
+
 
 @login_required
 def views_event(request):
@@ -28,9 +29,6 @@ def views_event(request):
                 )
             
             event.save()
-            categories = form.cleaned_data['categories']
-            for cat in categories:
-                event.categories.add(cat)
             return redirect('events:musics_index')
     
     events = Event.objects.all()
@@ -69,15 +67,3 @@ def views_show(request, pk):
     context = {"event":event, "edit":False, "review_form":review_form}
     return render(request, 'musics/show.html', context)
 
-@login_required
-def views_create_category(request):
-
-    category_form = CategoryForm()
-    if request.method == 'POST':
-        category_form = CategoryForm(request.POST)
-        if category_form.is_valid():
-            category_form.save()
-            return redirect('events:category_create')
-
-    context = {"category_form":category_form}
-    return render(request, 'musics/create_category.html', context)

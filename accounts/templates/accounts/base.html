@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav">
                 {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" href="{% url 'events:musics_event'%}">New Post</a>
+                    <a class="nav-item nav-link" href="{% url 'posts:musics_post'%}">New Post</a>
                     <a class="nav-item nav-link" href="{% url 'accounts:profile' %}">Profile</a>
                     <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
                 {% else %}
