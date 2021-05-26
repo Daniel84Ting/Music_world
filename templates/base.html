@@ -10,7 +10,7 @@
 <body>
     
     <header class="site-header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark md-3" style="background-color: #e3f2fd">
+        <nav class="navbar navbar-expand-lg p-3 shadow-lg navbar-dark bg-dark md-3">
             <div class="container">
             <a class="navbar-brand mr-4" href="{% url 'events:musics_index'%}">
             <img src="https://i.pinimg.com/564x/fe/7a/b1/fe7ab143eb031ce5ba71715a8bb70448.jpg" alt="" width="40" height="40" class="d-inline-block align-text-top">
@@ -28,8 +28,9 @@
                     {% endif %}
                     <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'posts:post-index' %}">Post</a>
+                        <a class="nav-item nav-link" href="{% url 'posts:post-index' %}">Posted</a>
                         {% if request.user.profile %}
+                        <a class="nav-item nav-link" href="{% url 'posts:post-create'%}">New Post</a>
                         <a class="nav-item nav-link" href="{% url 'accounts:profile' %}">Profile</a>
                         {% endif %}
                         <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
@@ -42,10 +43,24 @@
             </div>
         </nav>
     </header>
+
+        {% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-warning">
+                {{message}}
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        
+        
     
     
     {% block body %}
     {% endblock body %}
+    {% block content %}
+    {% endblock content %}
 
     {% block scripts %}{% endblock scripts %}
 

@@ -11,12 +11,9 @@ class PostForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ("title","events_date_time","location","description","cover","date_posted")
 
         widgets = {
-            # 'username' : forms.TextInput(attrs={
-            #     'class': 'form-control',
-            # }),
             'title' : forms.TextInput(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Events Title'
