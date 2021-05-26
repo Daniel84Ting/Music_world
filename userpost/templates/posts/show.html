@@ -22,8 +22,7 @@
                         <a class="btn btn-outline-primary" role="button" href="{% url "posts:posts_show" post.id %}?action=edit">Edit</a>
                         {% endif %}
                         <a class="btn btn-outline-primary" role="button" href="{% url "posts:posts_show" post.id %}?action=del">Delete</a>
-                    </div>
-                    
+                    </div> 
                 </div> 
             </div>
             {% if edit %} 
@@ -32,7 +31,7 @@
                     {% csrf_token %}
                     {{form}}
                     <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-outline-primary" type="submit">Edit Events</button>
+                        <button class="btn btn-outline-primary" type="submit">Edit Post</button>
                         <a class="btn btn-outline-primary" role="button" href="{% url "posts:posts_show" post.id %}">Cancel</a>
                     </div> 
                 </form>
@@ -43,11 +42,11 @@
                     <h4>Comments</h4>
                         <div class="col-md-3">
                             <div class="overflow-auto">
-                                {% for r in post.reviews.all %}
+                                {% for comment in post_comment %}
                                 <div class="card-body">
-                                    <h6>{{r.name}}</h6>
-                                
-                                    <p>{{r.review}}</p>
+                                    <h6>{{comment.user}}</h6>
+                                    <time class="ml-4 capacity-70 small-3">{{comment.date}}</time>
+                                    <p>{{comment.content}}</p>
                                     
                                 </div> 
                                 {% endfor %}
@@ -55,14 +54,14 @@
                         </div>
                         <div class="form-floating">
                             <h4>Reviews</h4>
-                            <form action="{% url 'reviews:review_create' event.id %}" method="post">
+                            <form action="{% url 'posts:comment_create' post.id %}" method="post">
                                 {% csrf_token %}
-                                {{review_form}}
+                                {{form}}
                                 <button class="btn btn-outline-primary" type="submit">Send</button>
                             </form>
                         </div>
                 </div>
-            </div> {% endcomment %}
+            </div>  {% endcomment %}
         </div>
     </div>
 </div>

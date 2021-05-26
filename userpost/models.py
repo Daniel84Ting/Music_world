@@ -13,16 +13,28 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+# class Comment(models.Model):
+
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     date = models.DateField(auto_now_add=False)
+#     post = models.ForeignKey('post', on_delete=models.CASCADE)
+#     content = models.TextField()
+
+#     def __str__(self):
+#         return self.user.username
+
+    
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     events_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     location = models.CharField(max_length=200, null=False)
     description = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    
 
     cover = models.ImageField(upload_to='uploads/%Y/%m/%d')
     categories = models.ManyToManyField(Category, related_name='events')
@@ -32,7 +44,7 @@ class Post(models.Model):
 
 
     def __str__(self):
-        return self.title
+        return self.user
 
 
     def get_absolute_url(self):

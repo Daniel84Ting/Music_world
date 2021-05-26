@@ -14,9 +14,9 @@ class PostForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'username' : forms.TextInput(attrs={
-                'class': 'form-control',
-            }),
+            # 'username' : forms.TextInput(attrs={
+            #     'class': 'form-control',
+            # }),
             'title' : forms.TextInput(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Events Title'
@@ -48,3 +48,15 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
+
+# class CommentForm(forms.ModelForm):
+#     content = forms.CharField(widget=forms.Textarea(attrs={
+#         'class': 'md-textarea form-control' ,
+#         'placeholder': 'comment here ... ',
+#         'rows': '4',
+#         }))
+    
+#     class Meta:
+#         model = Comment
+#         fields = ("content",)
+

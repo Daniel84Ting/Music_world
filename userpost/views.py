@@ -3,7 +3,6 @@ from .models import Post
 from django.shortcuts import redirect, render
 from music_world.views import Event
 from django.contrib.auth.decorators import login_required
-# from django.views.generic import *
 import uuid
 
 # Create your views here.
@@ -81,3 +80,29 @@ def views_create_category(request):
 
     context = {"category_form":category_form}
     return render(request, 'posts/create_category.html', context)
+
+    
+# def views_comment(request, self, *args, **kwargs):
+
+#     form = CommentForm
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             views_comment = self.get_object()
+#             form.instance.user = request.user
+#             form.instance.post = views_comment
+#             form.save()
+#             return redirect('posts/show.html')
+
+#     def context_data(self, **kwargs):
+#         post_comment = Comment.object.all().filter(post=self.object.id)
+#         context = super().context_data(**kwargs)
+#         context.update({
+#             'form': self.form,
+#             'post_comment': post_comment,
+#         })
+#         return context
+
+#     return render(request, 'posts/show.html', context)
+
+    

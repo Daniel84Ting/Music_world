@@ -7,12 +7,10 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ('city','country','image',)
 
         widgets = {
-            'user' : forms.TextInput(attrs={
-                'class': 'form-control', 
-            }),
+            
             'city' : forms.TextInput(attrs={
                 'class': 'form-control', 
             }),
