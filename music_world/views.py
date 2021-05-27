@@ -3,6 +3,7 @@ from music_world.forms import EventForm
 from music_world.models import Event
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from userpost.views import Post
 import uuid
 
 # Create your views here.
@@ -10,7 +11,8 @@ import uuid
 def views_index(request):
 
     events = Event.objects.all()
-    return render(request, 'musics/index.html',{"events":events})
+    posts = Post.objects.all()
+    return render(request, 'musics/index.html',{"events":events, "posts":posts})
 
 
 @login_required

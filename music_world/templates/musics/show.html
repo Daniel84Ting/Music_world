@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-lg p-3">
                     <img src="{{event.cover.url}}" class="card-img-top" />
                     <h3>{{event.title}}</h3>
                     <h4>Schedule: {{event.events_date_time}}</h4>
@@ -36,17 +36,24 @@
             </div>
             {% endif %}
             <div class="col">
-                <div class="card">
+                <div class="card shadow-lg p-3">
                     <h4>Comments</h4>
                         <div class="col-md-3">
                             <div class="overflow-auto">
                                 {% for r in event.reviews.all %}
-                                <div class="card-body">
-                                    <h6>{{r.username}}</h6>
-                                
-                                    <p>{{r.review}}</p>
-                                    
-                                </div> 
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        <h5 class="card-title">{{r.name}}</h5>
+                                    </div>
+                                    <div class="card-body shadow-lg p-3">
+                                        
+                                        <p class="card-text">{{r.review}}</p>
+                                        
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <small class="text-muted">Date posted: {{ event.date_posted|date:"F d, Y" }}</small>
+                                    </div>
+                                </div>
                                 {% endfor %}
                             </div>
                         </div>

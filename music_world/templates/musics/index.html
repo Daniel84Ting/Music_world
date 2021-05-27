@@ -15,7 +15,7 @@
                 <a href="{% url 'events:musics_show' event.id%}"><img src="{{event.cover.url}}" class="card-img-top" /></a>
                 <div class="card-body">
                     <h5 class="card-title">{{event.title}}</h5>
-                    <p class="card-text"> Date: {{event.events_date_time}}</p>
+                    <p class="card-text">Event Date: {{event.events_date_time}}</p>
                 </div>
             </div>
             {% empty %}
@@ -27,69 +27,37 @@
             {% endfor %}
         </div>
     </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            {% for post in posts %}
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="profile-pic">
+                        <img class="rounded-circle article-img" width="60" height="60" src="{{ post.username.profile.image.url }}">
+                    </div>
+                    <small class="text-muted">Posted by: </small>
+                    <div class="username">
+                        <p class="card-text"><h5>{{post.username}}</h5></p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
+                </div>
+                <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">Event Date: {{post.events_date_time}}</p>
+                </div>
+            </div>
+            {% empty %}
+
+            <div class="alert alert-warning">
+                No User Posted Yet
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock body %}
-
-
-{% comment %} {% block scripts %}
-
-<script>
-
-    getReviews()
-
-    document.querySelector("#add_review").addEventListener("submit", function (e){
-        e.preventDefault()
-        const formData = new FormData(e.target);
-        fetch("/reviews/{{event.id}}", {
-                method: "post",
-                body: JSON.stringify({
-                "review": formData.get('review')
-                })
-            })
-            .then(res => res.json())
-            .then(result => {
-                document.querySelector("#add_review").reset()
-                getReviews()
-            })
-    })
-
-    function getReviews() {
-        fetch("/reviews/{{event.id}}")
-            .then(res => res.json())
-            .then(result => {
-                console.log(result)
-
-                const reviews_holder = document.querySelector("#reviews")
-                reviews_holder.innerHTML = ""
-                let containerDiv, descDiv
-
-                result.forEach(ele => {
-                        containerDiv = document.createElement("div")
-                        containerDiv.classList.add("d-flex", "align-items-center", "mb-3")
-                        descDiv = document.createElement("div")
-                        descDiv.classList.add("flex-grow-1", "ms-3")
-                        let titleH1 = document.createElement("h2")
-                        let imgDiv = document.createElement("div")
-                        imgDiv.classList.add("flex-shrink-0")
-                        let img = document.createElement("img")
-                        img.src = "https://external-preview.redd.it/On7eiZzewvGWilxLRZX77N-SZKNt4jS4VMJX7ZSh88A.jpg?auto=webp&s=a3df8bb3c50479e3e74e6adf59da0d9964d39b76"
-
-                        imgDiv.appendChild(img)
-
-                        containerDiv.appendChild(imgDiv)
-
-
-                        titleH1.appendChild(document.createTextNode(ele.user.username + "-" + ele.user.city))
-                        descDiv.appendChild(titleH1)
-                        descDiv.appendChild(document.createTextNode(ele.review))
-                        containerDiv.appendChild(descDiv)
-                        //replace with new data
-                        reviews_holder.appendChild(containerDiv)
-                })
-            })
-
-    }
-</script>
-
-{% endblock scripts %} {% endcomment %}
