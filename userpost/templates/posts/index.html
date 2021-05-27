@@ -7,8 +7,14 @@
         <div class="col">
             {% for post in posts %}
             <div class="card shadow-lg p-3 mb-5 bg-body rounded">
-
-                <img class="rounded-circle article-img" src="{{ post.username.profile.image.url }}">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="profile-pic">
+                        <img class="rounded-circle article-img" width="60" height="60" src="{{ post.username.profile.image.url }}">
+                    </div>
+                    <div class="username">
+                        <p class="card-text"><h5>{{post.username}}</h5></p>
+                    </div>
+                </div>
                 <div class="card-footer">
                     <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
                 </div>

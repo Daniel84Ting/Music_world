@@ -42,12 +42,10 @@
                             <div class="overflow-auto">
                                 {% for r in event.reviews.all %}
                                 <div class="card-body">
-                                    <h6>{{r.name}}</h6>
+                                    <h6>{{r.username}}</h6>
                                 
                                     <p>{{r.review}}</p>
-                                    {% comment %} <div class="d-grid gap-2 ">
-                                        <a class="btn btn-outline-primary" role="button" href="{% url "events:musics_show" event.review.id %}?action=del">Delete</a>
-                                    </div> {% endcomment %}
+                                    
                                 </div> 
                                 {% endfor %}
                             </div>

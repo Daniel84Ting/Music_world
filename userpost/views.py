@@ -1,11 +1,11 @@
 from .forms import CategoryForm, PostForm
 from .models import Post
+from music_world.views import Event
 from accounts.models import User
 from django.shortcuts import redirect, render
-from music_world.views import Event
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-import uuid
+
 
 # Create your views here.
 
@@ -21,7 +21,7 @@ def views_post(request):
     form = PostForm()
 
     if request.method == "POST":
-        user=User.objects.get(pk=request.user.id)
+        user = User.objects.get(pk=request.user.id)
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = Post(
