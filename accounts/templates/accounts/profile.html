@@ -2,39 +2,43 @@
 
 {% block content %}
   <div class="container">
+    <h1 class="text-center">Profile</h1>
     <div class="content-section">
       <div class="media">
         <img class="rounded-circle account-img" width="250" height="250" src="{{ user.profile.image.url }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">City: {{ user.profile.city }}</p>
-          <p class="text-secondary">Country: {{ user.profile.country }}</p>
+          <h2 class="account-heading fw-bold">{{ user.username }}</h2>
+          <h4 class="text fw-bold">City: {{ user.profile.city }}</h4>
+          <h4 class="text fw-bold">Country: {{ user.profile.country }}</h4>
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-            {% for post in posts %}
-            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="profile-pic">
-                        <img class="rounded-circle article-img" width="60" height="60" src="{{ post.username.profile.image.url }}">
-                    </div>
-                    <div class="username">
-                        <p class="card-text"><h5>{{post.username}}</h5></p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
-                </div>
-                <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{post.title}}</h5>
-                    <p class="card-text">Date: {{post.events_date_time}}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+      <legend class="border-bottom mb-4"></legend>
+      <div class="profile-post">
+        {% for post in posts %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+              <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                  <div class="card-header d-flex justify-content-between">
+                      <div class="profile-pic">
+                          <img class="rounded-circle article-img" width="60" height="60" src="{{ post.username.profile.image.url }}">
+                      </div>
+                      <div class="username">
+                          <p class="card-text"><h5>{{post.username}}</h5></p>
+                      </div>
+                  </div>
+                  <div class="card-footer">
+                      <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
+                  </div>
+                  <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
+                  <div class="card-body">
+                      <h5 class="card-title">{{post.title}}</h5>
+                      <p class="card-text">Date: {{post.events_date_time}}</p>
+                  </div>
+              </div>
+          </div>
+      ` </div>
+        {% endfor %}
+      </div>
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">
@@ -44,7 +48,7 @@
               
           </fieldset>
           <div class="form-group">
-              <button class="btn btn-outline-primary" type="submit">Update</button>
+              <button class="btn btn-primary" type="submit">Update</button>
           </div>
       </form>
     </div>

@@ -3,13 +3,13 @@
 {% block body %}
 
 <div class="container">
-    <h1>Events Page</h1>
+    <h1 class="text-center">Events Page</h1>
     <div class="row">
         <div class="col-md-4">
             <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
-            <button class="btn btn-outline-primary" type="submit">Add Events</button>
+            <button class="btn btn-primary" type="submit">Add Events</button>
             </form>
         </div>
     </div>

@@ -1,61 +1,64 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block body %}
 <div class="container">
-    <h1>Music Events</h1>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-            {% for event in events %}
-            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
-                <div class="card-footer">
-                    <small class="text-muted">Posted by organiser - </small>
-                    <small class="text-muted">Date posted: {{ event.date_posted|date:"F d, Y" }}</small>
+    <div class="event-post">
+        <h1>Music Events</h1>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                {% for event in events %}
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-footer">
+                        <small class="text-muted">Posted by organiser - </small>
+                        <small class="text-muted">Date posted: {{ event.date_posted|date:"F d, Y" }}</small>
+                    </div>
+                    <a href="{% url 'events:musics_show' event.id%}"><img src="{{event.cover.url}}" class="card-img-top" /></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <p class="card-text">Event Date: {{event.events_date_time}}</p>
+                    </div>
                 </div>
-                <a href="{% url 'events:musics_show' event.id%}"><img src="{{event.cover.url}}" class="card-img-top" /></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{event.title}}</h5>
-                    <p class="card-text">Event Date: {{event.events_date_time}}</p>
+                {% empty %}
+
+                <div class="alert alert-warning">
+                    No Events added yet
                 </div>
-            </div>
-            {% empty %}
 
-            <div class="alert alert-warning">
-                No Events added yet
+                {% endfor %}
             </div>
-
-            {% endfor %}
         </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-            {% for post in posts %}
-            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="profile-pic">
-                        <img class="rounded-circle article-img" width="60" height="60" src="{{ post.username.profile.image.url }}">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                {% for post in posts %}
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="profile-pic">
+                            <img class="rounded-circle article-img" width="60" height="60" src="{{ post.username.profile.image.url }}">
+                        </div>
+                        <small class="text-muted">Posted by: </small>
+                        <div class="username">
+                            <p class="card-text"><h5>{{post.username}}</h5></p>
+                        </div>
                     </div>
-                    <small class="text-muted">Posted by: </small>
-                    <div class="username">
-                        <p class="card-text"><h5>{{post.username}}</h5></p>
+                    <div class="card-footer">
+                        <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
+                    </div>
+                    <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">Event Date: {{post.events_date_time}}</p>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
-                </div>
-                <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{post.title}}</h5>
-                    <p class="card-text">Event Date: {{post.events_date_time}}</p>
-                </div>
-            </div>
-            {% empty %}
+                {% empty %}
 
-            <div class="alert alert-warning">
-                No User Posted Yet
-            </div>
+                <div class="alert alert-warning">
+                    No User Posted Yet
+                </div>
 
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 from django import forms 
 from .models import *
 from django.forms import widgets
+from bootstrap_datepicker_plus import DatePickerInput
 
 class PostForm(forms.ModelForm):
 
@@ -19,8 +20,8 @@ class PostForm(forms.ModelForm):
                 'placeholder': 'Events Title'
             }),
             'events_date_time' : forms.DateTimeInput(attrs={
-                'class': 'form-control datetimepicker-input',
-                'data-target': '#datetimepicker1',
+                'class': 'form-control',
+                'data-target': 'datetimepicker',
                 'placeholder': 'yyyy-mm-dd  00:00'
             }),
             'location' : forms.TextInput(attrs={
