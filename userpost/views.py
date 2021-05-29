@@ -1,10 +1,11 @@
-from .forms import CategoryForm, PostForm
+from .forms import CategoryForm, PostForm, CommentForm
 from .models import Post
 from music_world.views import Event
 from accounts.models import User
 from django.shortcuts import redirect, render
+from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+
 
 
 # Create your views here.
@@ -37,7 +38,7 @@ def views_post(request):
             categories = form.cleaned_data['categories']
             for cat in categories:
                 post.categories.add(cat)
-            return redirect('posts:post-index')
+            return redirect('events:musics_index')
     
     posts = Post.objects.all()
 
@@ -70,17 +71,9 @@ def views_postShow(request, pk):
         context = {"form":form, "post":post, "edit":True}
         return render(request, 'posts/show.html', context)
     
-    # class views_postShow(UserPassesTestMixin, LoginRequiredMixin):
-    #     model = Post
-    #     success_url = '/'
+    comment_form = CommentForm()
 
-    #     def test_func(self):
-    #         post = self.get_object()
-    #         if self.request.user == post.user:
-    #             return True
-    #         return False
-
-    context = {"post":post, "edit":False}
+    context = {"post":post, "edit":False, "comment_form":comment_form}
     return render(request, 'posts/show.html', context)
 
 @login_required
@@ -97,27 +90,18 @@ def views_create_category(request):
     return render(request, 'posts/create_category.html', context)
 
     
-# def views_comment(request, self, *args, **kwargs):
+@login_required
+def views_comment(request, post):
+    if request.method == 'POST':
 
-#     form = CommentForm
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             views_comment = self.get_object()
-#             form.instance.user = request.user
-#             form.instance.post = views_comment
-#             form.save()
-#             return redirect('posts/show.html')
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            
+            
+            post = Post.objects.get(pk=post)
+            post.comments.create(user=request.user, comment=request.POST['comment'])
 
-#     def context_data(self, **kwargs):
-#         post_comment = Comment.object.all().filter(post=self.object.id)
-#         context = super().context_data(**kwargs)
-#         context.update({
-#             'form': self.form,
-#             'post_comment': post_comment,
-#         })
-#         return context
-
-#     return render(request, 'posts/show.html', context)
+            return redirect('posts:posts_show', post.id)
+    return HttpResponse({"message": "works"})
 
     

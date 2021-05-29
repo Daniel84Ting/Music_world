@@ -1,6 +1,5 @@
 from django.db import models
 from accounts.models import User
-from django.utils import timezone
 from django.urls import reverse
 import uuid
 
@@ -13,15 +12,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# class Comment(models.Model):
-
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     date = models.DateField(auto_now_add=False)
-#     post = models.ForeignKey('post', on_delete=models.CASCADE)
-#     content = models.TextField()
-
-#     def __str__(self):
-#         return self.user.username
 
     
 
@@ -36,7 +26,7 @@ class Post(models.Model):
     
 
     cover = models.ImageField(upload_to='uploads/%Y/%m/%d')
-    categories = models.ManyToManyField(Category, related_name='events')
+    categories = models.ManyToManyField(Category, related_name='posts')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -48,3 +38,20 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-create', kwargs={'pk': self.pk})
+
+
+class Comment(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+
+    comment = models.TextField(null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.comment
+
+    

@@ -1,5 +1,6 @@
 from django import forms 
 from .models import *
+from .views import *
 from django.forms import widgets
 from bootstrap_datepicker_plus import DatePickerInput
 
@@ -43,14 +44,17 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = '__all__'
 
-# class CommentForm(forms.ModelForm):
-#     content = forms.CharField(widget=forms.Textarea(attrs={
-#         'class': 'md-textarea form-control' ,
-#         'placeholder': 'comment here ... ',
-#         'rows': '4',
-#         }))
+class CommentForm(forms.ModelForm):
     
-#     class Meta:
-#         model = Comment
-#         fields = ("content",)
+    class Meta:
+        model = Comment
+        exclude = ('user','post',)
+
+        widgets = {
+            'comment' : forms.Textarea(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Review'
+            }),
+            
+        }
 

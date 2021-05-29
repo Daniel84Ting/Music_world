@@ -26,7 +26,6 @@ def views_event(request):
                 events_date_time=request.POST['events_date_time'],
                 location=request.POST['location'],
                 description=request.POST['description'],
-                date_posted=request.POST['date_posted'],
                 cover=request.FILES['cover']
                 )
             

@@ -6,16 +6,12 @@ class ReviewForm(forms.ModelForm):
         
     class Meta:
         model = Review
-        exclude = ('user','name',)
+        exclude = ('user','name','event',)
 
         widgets = {
             'review' : forms.Textarea(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Review'
             }),
-            
-            'event': forms.Select(attrs={
-                'class': 'form-control'
-            })
             
         }

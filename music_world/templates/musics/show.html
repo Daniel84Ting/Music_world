@@ -9,10 +9,7 @@
                     <h3>{{event.title}}</h3>
                     <h4>Schedule: {{event.events_date_time}}</h4>
                     <h4>Avenue: {{event.location}}</h4>
-                    <h4>Instruments:</h4>
-                    {% for cat in event.categories.all %}
-                    <li>{{cat.name}}</li>
-                    {% endfor %}
+                    
                     <h5>Description:</h5>
                     <p>{{event.description}}</p>
                     {% if request.user.is_superuser %}
@@ -48,7 +45,7 @@
                                     <p class="card-text">{{r.review}}</p>       
                                 </div>
                                 <div class="card-footer text-muted">
-                                    <small class="text-muted">Date posted: {{ event.date_posted|date:"F d, Y" }}</small>
+                                    <small class="text-muted">Date posted: {{ event.created_at|date:"F d, Y" }}</small>
                                 </div>
                             </div>
                             {% endfor %}

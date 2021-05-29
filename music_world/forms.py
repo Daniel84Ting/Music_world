@@ -28,10 +28,6 @@ class EventForm(forms.ModelForm):
                 'class': 'form-control', 
                 'placeholder': 'Events Description'
             }),
-            'date_posted' : forms.DateTimeInput(attrs={
-                'class': 'form-control datetimepicker-input',
-                'data-target': '#datetimepicker1',
-            }),
             'cover': forms.FileInput(attrs={
                 'class': 'form-control'
             })

@@ -39,31 +39,35 @@
                 </form>
             </div>
             {% endif %}
-            {% comment %} <div class="col">
-                <div class="card">
-                    <h4>Comments</h4>
-                        <div class="col-md-3">
-                            <div class="overflow-auto">
-                                {% for comment in post_comment %}
-                                <div class="card-body">
-                                    <h6>{{comment.user}}</h6>
-                                    <time class="ml-4 capacity-70 small-3">{{comment.date}}</time>
-                                    <p>{{comment.content}}</p>
-                                    
-                                </div> 
-                                {% endfor %}
+            <div class="col">
+                <div class="card shadow-lg p-3">
+                    <h4 class="text-center fw-bold">Reviews</h4>
+                        <div class="comments">
+                            {% for p in post.comments.all %}
+                            <div class="card text-center shadow-lg p-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">{{p.user.username}}</h5>
+                                </div>
+                                <div class="card-body">    
+                                    <p class="card-text">{{p.comment}}</p>       
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <small class="text-muted">Date posted: {{ post.created_at|date:"F d, Y" }}</small>
+                                </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        <div class="form-floating">
-                            <h4>Reviews</h4>
-                            <form action="{% url 'posts:comment_create' post.id %}" method="post">
-                                {% csrf_token %}
-                                {{form}}
-                                <button class="btn btn-outline-primary" type="submit">Send</button>
-                            </form>
-                        </div>
+                    </div>
                 </div>
-            </div>  {% endcomment %}
+                <div class="form-floating">
+                    <h4>Comments</h4>
+                    <form action="{% url 'posts:comment_create' post.id %}" method="post">
+                        {% csrf_token %}
+                        {{comment_form}}
+                        <button class="btn btn-primary" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
