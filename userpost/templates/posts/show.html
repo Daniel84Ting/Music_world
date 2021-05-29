@@ -17,14 +17,14 @@
                     <h5>Description:</h5>
                     <p>{{post.description}}</p>
                     
-                    {% comment %} {% if object.user == user %} {% endcomment %}
+                    {% comment %} {% if post.user.profile %}  {% endcomment %}
                     <div class="d-grid gap-2 ">
                         {% if request.user.profile %}
                         <a class="btn btn-primary" role="button" href="{% url "posts:posts_show" post.id %}?action=edit">Edit</a>
                         {% endif %}
                         <a class="btn btn-primary" role="button" href="{% url "posts:posts_show" post.id %}?action=del">Delete</a>
                     </div> 
-                    {% comment %} {% endif %} {% endcomment %}
+                    {% comment %} {% endif %}  {% endcomment %}
                 </div> 
             </div>
             {% if edit %} 

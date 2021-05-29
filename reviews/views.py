@@ -18,7 +18,7 @@ def views_create(request, event):
             
             
             event = Event.objects.get(pk=event)
-            event.reviews.create(name=request.POST['name'], review=request.POST['review'])
+            event.reviews.create(user=request.user,review=request.POST['review'])
 
             return redirect('events:musics_show', event.id)
     return HttpResponse({"message": "works"})

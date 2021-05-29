@@ -8,6 +8,7 @@
         <img class="rounded-circle account-img" width="250" height="250" src="{{ user.profile.image.url }}">
         <div class="media-body">
           <h2 class="account-heading fw-bold">{{ user.username }}</h2>
+          <h4 class="text fw-bold">First Name: {{ user.first_name }} - Last Name: {{user.last_name}}</h4>
           <h4 class="text fw-bold">City: {{ user.profile.city }}</h4>
           <h4 class="text fw-bold">Country: {{ user.profile.country }}</h4>
         </div>
@@ -15,7 +16,7 @@
       <legend class="border-bottom mb-4"></legend>
       <div class="profile-post">
         {% for post in posts %}
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-md-3 g-4">
           <div class="col">
               <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                   <div class="card-header d-flex justify-content-between">
@@ -27,7 +28,7 @@
                       </div>
                   </div>
                   <div class="card-footer">
-                      <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
+                      <small class="text-muted">Date posted: {{ post.created_at|date:"F d, Y" }}</small>
                   </div>
                   <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
                   <div class="card-body">
@@ -36,7 +37,7 @@
                   </div>
               </div>
           </div>
-      ` </div>
+        </div>
         {% endfor %}
       </div>
       <form method="POST" enctype="multipart/form-data">

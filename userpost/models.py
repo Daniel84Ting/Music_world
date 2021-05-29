@@ -33,7 +33,6 @@ class Post(models.Model):
     events_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     location = models.CharField(max_length=200, null=False)
     description = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
     
 
     cover = models.ImageField(upload_to='uploads/%Y/%m/%d')

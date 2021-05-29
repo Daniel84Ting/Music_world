@@ -12,7 +12,7 @@ class PostForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        fields = ("title","events_date_time","location","description","cover","date_posted")
+        fields = ("title","events_date_time","location","description","cover",)
 
         widgets = {
             'title' : forms.TextInput(attrs={
@@ -31,10 +31,6 @@ class PostForm(forms.ModelForm):
             'description' : forms.Textarea(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Events Description'
-            }),
-            'date_posted' : forms.DateTimeInput(attrs={
-                'class': 'form-control datetimepicker-input',
-                'data-target': '#datetimepicker1',
             }),
             'cover': forms.FileInput(attrs={
                 'class': 'form-control'

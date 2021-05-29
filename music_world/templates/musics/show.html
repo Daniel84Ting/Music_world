@@ -42,7 +42,7 @@
                             {% for r in event.reviews.all %}
                             <div class="card text-center shadow-lg p-3">
                                 <div class="card-header">
-                                    <h5 class="card-title">{{r.name}}</h5>
+                                    <h5 class="card-title">{{r.user.username}}</h5>
                                 </div>
                                 <div class="card-body">    
                                     <p class="card-text">{{r.review}}</p>       

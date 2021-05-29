@@ -12,7 +12,7 @@
                 <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-footer">
                         <small class="text-muted">Posted by organiser - </small>
-                        <small class="text-muted">Date posted: {{ event.date_posted|date:"F d, Y" }}</small>
+                        <small class="text-muted">Date posted: {{ event.created_at|date:"F d, Y" }}</small>
                     </div>
                     <a href="{% url 'events:musics_show' event.id%}"><img src="{{event.cover.url}}" class="card-img-top" /></a>
                     <div class="card-body">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Date posted: {{ post.date_posted|date:"F d, Y" }}</small>
+                        <small class="text-muted">Date posted: {{ post.created_at|date:"F d, Y" }}</small>
                     </div>
                     <a href="{% url 'posts:posts_show' post.id%}"><img src="{{post.cover.url}}" class="card-img-top" /></a>
                     <div class="card-body">
