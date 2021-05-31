@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 body {
-    background-image: url('https://wallpaperset.com/w/full/2/7/d/466998.jpg');
+    background-image: url("/static/musics/music_background.jpg");
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
     font-family: 'Courgette', cursive;
 }
+
 h1, h2, button, a {
     color: white;
     text-shadow: 2px 2px 4px #000000;
+    margin-top: 10px;
 }
 
 .container {
@@ -44,8 +50,10 @@ h1, h2, button, a {
 }
 
 .login {
+    background-color: rgba(191, 220, 247, 0.4);
     text-align: center;
 }
+
 .login > form > .login-btn {
     margin: 20px;
 }
@@ -59,4 +67,8 @@ h1, h2, button, a {
     overflow: auto;
     width: 100%;
     height: 550px;
+}
+.media {
+    background-color: rgba(191, 220, 247, 0.4);
+    border-radius: 20px;
 }

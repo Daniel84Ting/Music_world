@@ -74,7 +74,7 @@ REST_FRAMEWORK = {
 SECRET_KEY = 'danielmusicworld'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -179,7 +179,7 @@ AUTH_USER_MODEL = "accounts.User"
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/image')
 STATICFILES_DIR =os.path.join(BASE_DIR, '/static')
 
 # Default primary key field type
