@@ -71,7 +71,7 @@ REST_FRAMEWORK = {
     )
 }
 
-SECRET_KEY = 'danielmusicworld'
+# SECRET_KEY = 'danielmusicworld'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),

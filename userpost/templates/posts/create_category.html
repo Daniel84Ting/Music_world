@@ -2,20 +2,17 @@
 
 {% block body %}
 <main class="container">
+ <h1>Instruments Category</h1>
 {% if request.user.is_superuser %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{category_form}}
+<div class="category">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{category_form}}
 
-    <button class="btn btn-primary" type="submit">Add Category</button>
+        <button class="btn btn-primary" type="submit">Add Category</button>
 
-</form>
-{% endif %}
-<div class="col-md-6">
-    <h4>Instruments:</h4>
-    {% for cat in post.categories.all %}
-        <li>{{cat.name}}</li>
-    {% endfor %}
+    </form>
 </div>
+{% endif %}
 </main>
 {% endblock body %}

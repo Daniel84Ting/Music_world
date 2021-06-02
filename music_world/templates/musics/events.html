@@ -7,7 +7,7 @@
     <h1 class="text-center">Events Page</h1>
     <div class="row">
         <div class="col-md-4">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form class="user-post" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
             <button class="btn btn-primary" type="submit">Add Events</button>

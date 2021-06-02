@@ -59,14 +59,16 @@
                         </div>
                     </div>
                 </div>
+                {% if request.user.profile %}
                 <div class="form-floating">
-                    <h4>Comments</h4>
+                    <h2>Comments</h2>
                     <form action="{% url 'posts:comment_create' post.id %}" method="post">
                         {% csrf_token %}
                         {{comment_form}}
                         <button class="btn btn-primary" type="submit">Send</button>
                     </form>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
