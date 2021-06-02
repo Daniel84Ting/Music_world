@@ -9,6 +9,8 @@
 
 ## Technologies
 
+-
+
 ## RESTful router
 
 | **No.** | **Route** | **URL**    | **HTTP Verb** | **Description** |
@@ -41,7 +43,7 @@
 ## Wireframe Design
 
 - Click on Register button will swicth to register page. after register user click on Login button will swicth to login page.
- ![](Wireframe/login_pager.png) ![](Wireframe/register_page.png)
+ ![](Wireframe/login_page.png) ![](Wireframe/register_page.png)
 
 
 
