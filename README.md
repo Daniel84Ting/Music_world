@@ -58,45 +58,58 @@
 #### User Views
 
 - Profile page
+
 ![](Wireframe/profile_page.jpg)
 
 - Main page
+
 ![](Wireframe/user_main_page.jpg)
 
 - User post
+
 ![](Wireframe/user_post_page.jpg)
 
 - User post show
+
 ![](Wireframe/user_post_show_page.jpg)
 
 - User edit post
+
 ![](Wireframe/user_post_edit_page.jpg)
 
 - User view event show
+
 ![](Wireframe/user_site_event_page.jpg)
 
 
 #### Admin Views
 
 - Admin main Page
+
 ![](Wireframe/admin_main_page.jpg)
 
 - Admin event post Page
+
 ![](Wireframe/admin_event_post_page.jpg)
 
 - Admin category Page
+
 ![](Wireframe/admin_category_page.jpg)
 
 - Admin event show Page
+
 ![](Wireframe/admin_event_show_page.jpg)
 
 - Admin event edit Page
+
 ![](Wireframe/admin_event_edit_page.jpg)
 
 - Admin user post Page
+
 ![](Wireframe/admin_user_post_page.jpg)
 
 - Admin user post show Page
+
 ![](Wireframe/admin_user_post_show_page.jpg)
 
 ## Additional Features were under Considerations
