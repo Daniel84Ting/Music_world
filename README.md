@@ -42,8 +42,8 @@
 
 ## Wireframe Design
 
-- Click on Register button will swicth to register page. after register user click on Login button will swicth to login page.
- ![](Wireframe/login_page.png) ![](Wireframe/register_page.png)
+- Click on Register button to register. after register click on Login button to login tp main page.
+ ![](Wireframe/register_login_page.jpg)
 
 
 
