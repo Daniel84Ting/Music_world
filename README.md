@@ -4,16 +4,17 @@
 
 - https://github.com/Daniel84Ting/Music_world
 
+- https://daniel-music-app.herokuapp.com/accounts/login/
+
 ## Database/Storage
 
 - #### PostgresSQL
-
+- #### Heroku
 
 ## New Technologies
 
 - Django
 - Django-filter
-- Djangorestframework
 - Pillow 
 - Psycopg2-binary
 - Markdown
