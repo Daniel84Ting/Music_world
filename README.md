@@ -1,6 +1,7 @@
 # Music_world
 
 ## Link
+
 - https://github.com/Daniel84Ting/Music_world
 
 ## Database/Storage
@@ -45,7 +46,7 @@
 
 ## Accomplishments
 
-- This app is to create a plaform for all the music players to share and play music together. User need to register and login to the web page. User need to update they profile and picture.
+- This app is to create a plaform for all the music players to share and play music together. User need to register and login to the app. User need to update they profile and picture. user can create the event with instrument category for those music player who able to play a specific instruments require. User can click on the other user post to view all the information of the coming event. User also can give the review after join the event. User can edit or delete they own event if any changes for they event. For organiser (admin) can create the event or any sponsor advertisment for all the musician to join the event, and also can edit or delete the event if any changes for the event. Organiser can create the music Instrument category for the musician to choose the instrument category for the user post event requirement. Organiser can delete the musician post event if any vilation of policy issue. 
 
 
 ## Wireframe Design
@@ -114,4 +115,7 @@
 
 ## Additional Features were under Considerations
 
-- 
+- search catogory for the event post. 
+- profile page that only show user own posted event.
+- user can view other user profile page information.
+- user can leave the message for other user to contact if interested on the event.
