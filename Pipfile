@@ -7,11 +7,12 @@ name = "pypi"
 django = "*"
 pillow = "*"
 psycopg2-binary = "*"
-djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 django-bootstrap-datepicker-plus = "*"
-djangorestframework-simplejwt = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 

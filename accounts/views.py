@@ -7,16 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from accounts.serializers import *
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework import exceptions
 from userpost.views import Post
 
 # Create your views here.
 
-@permission_classes([AllowAny])
+
 def views_register(request):
     if request.method == "POST":
 
@@ -54,7 +49,7 @@ def views_register(request):
     return render(request, "accounts/register.html")
 
 
-@permission_classes([AllowAny])
+
 def views_login(request):
     if request.method == "POST":
 
@@ -71,16 +66,6 @@ def views_login(request):
             messages.error(request, "username or password is incorrect")
             return render(request, "accounts/login.html")
 
-        serialized_user = UserSerializer(user).data
-        del serialized_user['password']
-        
-        refresh = RefreshToken.for_user(user)
-
-        return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-            'user': serialized_user
-        }
 
     return render(request, "accounts/login.html")
 
@@ -92,7 +77,7 @@ def views_logout(request):
 
 
 
-@permission_classes([IsAuthenticated])
+
 @login_required
 def views_profile(request):
     if request.method == 'POST':
