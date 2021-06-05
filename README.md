@@ -6,7 +6,7 @@
 ## Database/Storage
 
 - #### PostgresSQL
-- #### Heroku
+
 
 ## Technologies
 
@@ -45,70 +45,70 @@
 
 ## Accomplishments
 
-- 
+- This app is to create a plaform for all the music players to share and play music together. User need to register and login to the web page. User need to update they profile and picture.
 
 
 ## Wireframe Design
 
 #### Authentication
 
-- Click on Register button to register. after register click on Login button to login tp main page.
+- Click on Register to register. after register click on Login to login tp main page.
 ![](Wireframe/register_login_page.jpg)
 
 #### User Views
 
-- Profile page
+- Profile page for user to view the information and update the profile and profile picture.
 
 ![](Wireframe/profile_page.jpg)
 
-- Main page
+- Main page for user to view all the event posted by other user and the organiser. the navigation only will show the Music world, New post, profile and Logout button.
 
 ![](Wireframe/user_main_page.jpg)
 
-- User post
+- User post page for user create new events or searching new hobby music player to play music instrument together.
 
 ![](Wireframe/user_post_page.jpg)
 
-- User post show
+- User post show page to view more information about the event and also can give the review about the event.
 
 ![](Wireframe/user_post_show_page.jpg)
 
-- User edit post
+- User can edit or delete post if any changes.
 
 ![](Wireframe/user_post_edit_page.jpg)
 
-- User view event show
+- User can view the event information posted by organiser, and also can give the review about the event.
 
 ![](Wireframe/user_site_event_page.jpg)
 
 
 #### Admin Views
 
-- Admin main Page
+- Admin main Page for organiser to view all the event, and the navigation only will show Music world, Category, Events, User posted, logout button.
 
 ![](Wireframe/admin_main_page.jpg)
 
-- Admin event post Page
+- Admin event post Page to create the event or the advertisment to invite all the musician.
 
 ![](Wireframe/admin_event_post_page.jpg)
 
-- Admin category Page
+- Admin category Page to create the instrument category for user to post event. 
 
 ![](Wireframe/admin_category_page.jpg)
 
-- Admin event show Page
+- Admin event show Page to view the organiser own page event infromation.
 
 ![](Wireframe/admin_event_show_page.jpg)
 
-- Admin event edit Page
+- Admin event edit Page for organiser to edit or delete the event if any changes.
 
 ![](Wireframe/admin_event_edit_page.jpg)
 
-- Admin user post Page
+- Admin user post Page for organiser to view all user post the events.
 
 ![](Wireframe/admin_user_post_page.jpg)
 
-- Admin user post show Page
+- Admin user post show Page to view the user post information. and if the user vilation of policy issue will delete the user post.
 
 ![](Wireframe/admin_user_post_show_page.jpg)
 
